@@ -7,28 +7,36 @@ def get_books():
 	with open('books.txt') as f:
 		books = f.read().splitlines()
 	for i, book in enumerate(books):
-		books[i] = book.split("(")[0][:-1]
+		temp = book.split("(")
+		if(len(temp) > 1):
+			books[i] = temp[0][:-1]
 	return books
 
 def get_movies():
 	with open('movies.txt') as f:
 		movies = f.read().splitlines()
 	for i, movie in enumerate(movies):
-		movies[i] = movie.split("(")[0][:-1]
+		temp = movie.split("(")
+		if(len(temp) > 1):
+			movies[i] = temp[0][:-1]
 	return movies
 
 def get_shows():
 	with open('tvshows.txt') as f:
 		shows = f.read().splitlines()
 	for i, show in enumerate(shows):
-		shows[i] = show.split("(")[0][:-1]
+		temp = show.split("(")
+		if(len(temp) > 1):
+			shows[i] = temp[0][:-1]
 	return shows
 
 def get_games():
 	with open('games.txt') as f:
 		games = f.read().splitlines()
 	for i, game in enumerate(games):
-		games[i] = game.split("(")[0][:-1]
+		temp = game.split("(")
+		if(len(temp) > 1):
+			games[i] = temp[0][:-1]
 	return games
 	
 def get_book_recommendation():
@@ -90,5 +98,5 @@ def get_all_recommendations():
 	get_show_recommendation()
 	get_game_recommendation()
 	
-#get_game_recommendation()
+get_show_recommendation()
 	

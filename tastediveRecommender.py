@@ -1,11 +1,13 @@
 import requests
 import json
 
+import config
+
 
 #type = music, movies, shows, podcasts, books, authors, games
 def tastedive_recommender(type, name):
 	query = name.replace(" ", "+")
-	url = f"https://tastedive.com/api/similar?k=299635-tasterec-LXG98JWS&type={type}&q={query}"
+	url = f"https://tastedive.com/api/similar?k={config.TASTEDIVE_API}&type={type}&q={query}"
 	r = requests.get(url)
 	list_items = []
 	item_dict = json.loads(r.text)

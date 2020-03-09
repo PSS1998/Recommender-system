@@ -1,6 +1,7 @@
 from getRecommendation import get_recommendation
 
 from collections import Counter
+from collections import defaultdict
 
 
 def get_books():
@@ -43,60 +44,128 @@ def get_book_recommendation():
 	books = get_books()	
 	count = 0
 	book_recom = []
+	book_recom_based = defaultdict()
 	for i in range(len(books)):
 		count += 1
 		if count%10 == 1:
 			print(count)
-		book_recom.extend(get_recommendation("book", books[i]))
+		else:
+			print(count)
+		recommendations = get_recommendation("book", books[i])
+		book_recom.extend(recommendations)
+		book_recom_based[books[i]] = recommendations
 	print("books done")
-	book_recom = [k for k, v in sorted(Counter(book_recom).items(), key=lambda item: item[1], reverse=True)][:10]
-	print(book_recom)
+	book_recom = [x for x in book_recom if x not in books]
+	book_recom = [{k:v} for k, v in sorted(Counter(book_recom).items(), key=lambda item: item[1], reverse=True)]
+	recom_based = []
+	for i in range(len(book_recom)):
+		temp = []
+		for k,v in book_recom_based.items():
+			for key in book_recom[i]:
+				if key in v:
+					temp.append(k)
+		recom_based.append(temp)
+	for i in range(len(book_recom)):
+		book_recom[i].update({'similar':recom_based[i]})
+	with open('book_recommmendation.txt', 'w') as f:
+		for item in book_recom:
+			f.write("%s\n" % item)
 	
 def get_movie_recommendation():
 	movies = get_movies()	
 	count = 0
 	movie_recom = []
-	for i in range(len(movie)):
+	movie_recom_based = defaultdict()
+	for i in range(len(movies)):
 		count += 1
 		if count%10 == 1:
 			print(count)
-		movie_recom.extend(get_recommendation("movie", movies[i]))
+		recommendations = get_recommendation("movie", movies[i])
+		movie_recom.extend(recommendations)
+		movie_recom_based[movies[i]] = recommendations
 	print("movis done")
-	movie_recom = [k for k, v in sorted(Counter(movie_recom).items(), key=lambda item: item[1], reverse=True)][:10]
-	print(movie_recom)
+	movie_recom = [x for x in movie_recom if x not in movies]
+	movie_recom = [{k:v} for k, v in sorted(Counter(movie_recom).items(), key=lambda item: item[1], reverse=True)]
+	recom_based = []
+	for i in range(len(movie_recom)):
+		temp = []
+		for k,v in movie_recom_based.items():
+			for key in movie_recom[i]:
+				if key in v:
+					temp.append(k)
+		recom_based.append(temp)
+	for i in range(len(movie_recom)):
+		movie_recom[i].update({'similar':recom_based[i]})
+	with open('movie_recommmendation.txt', 'w') as f:
+		for item in movie_recom:
+			f.write("%s\n" % item)
 	
 def get_show_recommendation():
 	shows = get_shows()	
 	count = 0
 	show_recom = []
+	show_recom_based = defaultdict()
 	for i in range(len(shows)):
 		count += 1
 		if count%10 == 1:
 			print(count)
-		show_recom.extend(get_recommendation("show", shows[i]))
+		recommendations = get_recommendation("show", shows[i])
+		show_recom.extend(recommendations)
+		show_recom_based[shows[i]] = recommendations
 	print("shows done")
-	show_recom = [k for k, v in sorted(Counter(show_recom).items(), key=lambda item: item[1], reverse=True)][:10]
-	print(show_recom)
+	show_recom = [x for x in show_recom if x not in shows]
+	show_recom = [{k:v} for k, v in sorted(Counter(show_recom).items(), key=lambda item: item[1], reverse=True)]
+	recom_based = []
+	for i in range(len(show_recom)):
+		temp = []
+		for k,v in show_recom_based.items():
+			for key in show_recom[i]:
+				if key in v:
+					temp.append(k)
+		recom_based.append(temp)
+	for i in range(len(show_recom)):
+		show_recom[i].update({'similar':recom_based[i]})
+	with open('show_recommmendation.txt', 'w') as f:
+		for item in show_recom:
+			f.write("%s\n" % item)
 	
 def get_game_recommendation():
 	games = get_games()	
 	count = 0
 	game_recom = []
+	game_recom_based = defaultdict()
 	for i in range(len(games)):
 		count += 1
 		if count%10 == 1:
 			print(count)
-		game_recom.extend(get_recommendation("game", games[i]))
+		recommendations = get_recommendation("game", games[i])
+		game_recom.extend(recommendations)
+		game_recom_based[games[i]] = recommendations
 	print("games done")
-	game_recom = [k for k, v in sorted(Counter(game_recom).items(), key=lambda item: item[1], reverse=True)][:10]
-	print(game_recom)
+	game_recom = [x for x in game_recom if x not in games]
+	game_recom = [{k:v} for k, v in sorted(Counter(game_recom).items(), key=lambda item: item[1], reverse=True)]
+	recom_based = []
+	for i in range(len(game_recom)):
+		temp = []
+		for k,v in game_recom_based.items():
+			for key in game_recom[i]:
+				if key in v:
+					temp.append(k)
+		recom_based.append(temp)
+	for i in range(len(game_recom)):
+		game_recom[i].update({'similar':recom_based[i]})
+	with open('game_recommmendation.txt', 'w', encoding="utf-8") as f:
+		for item in game_recom:
+			f.write("%s\n" % item)
 
 
 def get_all_recommendations():
-	get_book_recommendation()
-	get_movie_recommendation()
-	get_show_recommendation()
 	get_game_recommendation()
+	get_show_recommendation()
+	get_movie_recommendation()
+	get_book_recommendation()
 	
-get_show_recommendation()
+	
+	
+get_all_recommendations()
 	

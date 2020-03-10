@@ -56,7 +56,18 @@ def get_book_recommendation():
 		book_recom_based[books[i]] = recommendations
 	print("books done")
 	book_recom = [x for x in book_recom if x not in books]
+	book_recom_part2 = []
+	for i in range(len(book_recom)):
+		temp = book_recom[i].split("(")
+		if len(temp) > 1:
+			book_recom[i] = temp[0][:-1]
+			book_recom_part2.append([temp[0][:-1], temp[1]])
 	book_recom = [{k:v} for k, v in sorted(Counter(book_recom).items(), key=lambda item: item[1], reverse=True)]
+	for i in range(len(book_recom)):
+		for j in range(len(book_recom_part2)):
+			for key in book_recom[i]:
+				if key == book_recom_part2[j][0]:
+					book_recom[i][key+" ("+book_recom_part2[i][1]] = book_recom[i].pop(key)
 	recom_based = []
 	for i in range(len(book_recom)):
 		temp = []
@@ -85,7 +96,18 @@ def get_movie_recommendation():
 		movie_recom_based[movies[i]] = recommendations
 	print("movis done")
 	movie_recom = [x for x in movie_recom if x not in movies]
+	movie_recom_part2 = []
+	for i in range(len(movie_recom)):
+		temp = movie_recom[i].split("(")
+		if len(temp) > 1:
+			movie_recom[i] = temp[0][:-1]
+			movie_recom_part2.append([temp[0][:-1], temp[1]])
 	movie_recom = [{k:v} for k, v in sorted(Counter(movie_recom).items(), key=lambda item: item[1], reverse=True)]
+	for i in range(len(movie_recom)):
+		for j in range(len(movie_recom_part2)):
+			for key in movie_recom[i]:
+				if key == movie_recom_part2[j][0]:
+					movie_recom[i][key+" ("+movie_recom_part2[i][1]] = show_recom[i].pop(key)
 	recom_based = []
 	for i in range(len(movie_recom)):
 		temp = []
@@ -114,7 +136,18 @@ def get_show_recommendation():
 		show_recom_based[shows[i]] = recommendations
 	print("shows done")
 	show_recom = [x for x in show_recom if x not in shows]
+	show_recom_part2 = []
+	for i in range(len(show_recom)):
+		temp = show_recom[i].split("(")
+		if len(temp) > 1:
+			show_recom[i] = temp[0][:-1]
+			show_recom_part2.append([temp[0][:-1], temp[1]])
 	show_recom = [{k:v} for k, v in sorted(Counter(show_recom).items(), key=lambda item: item[1], reverse=True)]
+	for i in range(len(show_recom)):
+		for j in range(len(show_recom_part2)):
+			for key in show_recom[i]:
+				if key == show_recom_part2[j][0]:
+					show_recom[i][key+" ("+show_recom_part2[i][1]] = show_recom[i].pop(key)
 	recom_based = []
 	for i in range(len(show_recom)):
 		temp = []
@@ -143,7 +176,18 @@ def get_game_recommendation():
 		game_recom_based[games[i]] = recommendations
 	print("games done")
 	game_recom = [x for x in game_recom if x not in games]
+	game_recom_part2 = []
+	for i in range(len(game_recom)):
+		temp = game_recom[i].split("(")
+		if len(temp) > 1:
+			game_recom[i] = temp[0][:-1]
+			game_recom_part2.append([temp[0][:-1], temp[1]])
 	game_recom = [{k:v} for k, v in sorted(Counter(game_recom).items(), key=lambda item: item[1], reverse=True)]
+	for i in range(len(game_recom)):
+		for j in range(len(game_recom_part2)):
+			for key in game_recom[i]:
+				if key == game_recom_part2[j][0]:
+					game_recom[i][key+" ("+game_recom_part2[i][1]] = game_recom[i].pop(key)
 	recom_based = []
 	for i in range(len(game_recom)):
 		temp = []

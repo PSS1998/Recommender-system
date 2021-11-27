@@ -3,6 +3,7 @@ This program will scrape your movie from letterboxd.com, your tv shows from tvti
 if you dont have account in those sites you can add your list manually to the text file.<br />
 then it can give you recommendation on all those files with running get_all_recommendations() function in get_all_recommendation.py file.<br />
 additionaly you can get recommendation on a single movie, tv show, book or game with running get_recommendation function in getRecommendation.py file<br />
+For a simple API, WebApp and App based on this projects, visit https://github.com/PSS1998/Recommender-API repository.<br />
 
 ## Recommendation system
 the Recommender System for books will give you recommendation based on goodreads site simillar recommendation, tastedive site and "goodbooks-10k" dataset.<br />
